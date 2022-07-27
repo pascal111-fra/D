@@ -17,7 +17,7 @@ void user_commands();
 int main(string[] args)
 {
 
-    for(int i=0; i<3; i++)
+    for(int i=0; i<picked_days.length; i++)
         picked_days[i]=to!string(i);
 
     days_show();
@@ -35,10 +35,10 @@ int main(string[] args)
 void days_show()
 {
 
-    for(int i=0; i<6; i++)
+    for(int i=0; i<week_days.length; i++)
         write(week_days[i], ", ");
 
-    writeln(week_days[6], ".\n");
+    writeln(week_days[week_days.length-1], ".\n");
 
 }
 
@@ -47,7 +47,7 @@ void picked_days_input()
 
     bool exist_tester;
 
-    for(int i=0; i<3; i++){
+    for(int i=0; i<picked_days.length; i++){
 
         pick_again:
 
@@ -57,7 +57,7 @@ void picked_days_input()
         picked_days[i]=readln();
         picked_days[i]=strip(picked_days[i]);
 
-        for(int j=0; j<7; j++){
+        for(int j=0; j<week_days.length; j++){
             if (picked_days[i]==week_days[j]){
                 exist_tester=true;
                 break;}}
@@ -102,7 +102,7 @@ void user_commands()
 
         exist_tester=false;
 
-        for(int j=0; j<3; j++)
+        for(int j=0; j<picked_days.length; j++)
             if (x_what==picked_days[j]){
                 writeln("true!");
                 exist_tester=true;
@@ -114,7 +114,7 @@ void user_commands()
 
     if (x_command=="ord")
 
-        for(int j=0; j<3; j++)
+        for(int j=0; j<picked_days.length; j++)
             if (x_what==picked_days[j]){
                 writeln(j+1);
                 break;}
