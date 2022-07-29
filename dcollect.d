@@ -7,6 +7,7 @@ import std.algorithm;
 import std.range;
 import std.functional;
 import std.array;
+import std.string;
 
 
 /****************************************/
@@ -77,7 +78,7 @@ string strtolower(const string ch)
     string ch_cpy;
 
     for(int i=0; i<ch.length; i++)
-        ch_cpy~=toLower(ch[i]);
+        ch_cpy~=std.ascii.toLower(ch[i]);
 
     return ch_cpy;
 
@@ -91,7 +92,7 @@ string strtoupper(const string ch)
     string ch_cpy;
 
     for(int i=0; i<ch.length; i++)
-        ch_cpy~=toUpper(ch[i]);
+        ch_cpy~=std.ascii.toUpper(ch[i]);
 
     return ch_cpy;
 
@@ -107,4 +108,13 @@ string[] d_strtok(const string ch, const string delim)
     filter!(not!empty).array;
 
     return tokens;
+}
+
+/*********************************************/
+
+auto d_strstr (const string ch, const string substr)
+{
+
+    return ch.indexOf(substr);
+
 }
