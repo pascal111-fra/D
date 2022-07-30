@@ -12,7 +12,7 @@ import std.string;
 
 /****************************************/
 
-string strleft(const string ch, int n)
+string strleft(const string ch, uint n)
 {
 
     string ch_sub;
@@ -41,7 +41,7 @@ string strreverse(const string ch)
 
 /*********************************************/
 
-string strright(const string ch, int n)
+string strright(const string ch, uint n)
 {
 
     string ch_sub1,
@@ -118,3 +118,136 @@ auto d_strstr (const string ch, const string substr)
     return ch.indexOf(substr);
 
 }
+
+/*********************************************/
+
+string strdel(const string ch, uint x, uint l )
+{
+
+    string l_ch=ch.strleft(x);
+    string r_ch=ch.strright(to!uint(ch.length-(x+l)));
+
+    return (l_ch~=r_ch);
+
+}
+
+/*********************************************/
+
+string strdel(const string ch, const string substr)
+{
+
+    string ch_cpy=ch;
+    auto substr_index=ch_cpy.d_strstr(substr);
+
+    ch_cpy=ch_cpy.strdel(to!uint(substr_index), to!uint(substr.length));
+
+    return ch_cpy;
+
+}
+
+/*********************************************/
+
+string strinsert(const string ch, const string substr, uint x)
+{
+
+    string l_ch=ch.strleft(x);
+    string r_ch=ch.strdel(0, x);
+    string merge_ch=l_ch~substr~r_ch;
+
+    return merge_ch;
+
+}
+
+/*********************************************/
+
+string strltrim(const string ch)
+{
+
+    string ch_cpy=ch;
+
+    while(ch_cpy.strleft(1)==" ")
+        ch_cpy=ch_cpy.strdel(0,1);
+
+    return ch_cpy;
+
+}
+
+/*********************************************/
+
+string strrtrim(const string ch)
+{
+
+    string ch_cpy=ch.strreverse;
+
+    while(ch_cpy.strleft(1)==" ")
+        ch_cpy=ch_cpy.strdel(0,1);
+
+    return ch_cpy.strreverse;
+
+}
+
+/*********************************************/
+
+string strreplace(const string ch, const string old_str, const string new_str)
+{
+
+    string ch_cpy=ch;
+    auto old_index = to!uint(ch_cpy.d_strstr(old_str));
+
+    ch_cpy=ch_cpy.strdel(old_index, to!uint(old_str.length));
+    ch_cpy=ch_cpy.strinsert(new_str, old_index);
+
+    return ch_cpy;
+
+
+}
+
+/*********************************************/
+
+string strreplaceall(const string ch, const string old_str, const string new_str)
+{
+
+    string ch_cpy=ch;
+
+    while(ch_cpy.d_strstr(old_str)>=0)
+        ch_cpy=ch_cpy.strreplace(old_str, new_str);
+
+    return ch_cpy;
+}
+
+/*********************************************/
+
+string strdelall(const string ch, const string substr)
+{
+
+    string ch_cpy=ch;
+
+    while(ch_cpy.d_strstr(substr)>=0)
+        ch_cpy=ch_cpy.strdel(substr);
+
+    return ch_cpy;
+
+}
+
+/*********************************************/
+
+string strstring(uint x, const string c)
+{
+
+    string ch;
+
+    for(int i=1; i<=x; i++)
+        ch~=c;
+
+    return ch;
+}
+
+/*********************************************/
+
+string strspace(uint x)
+{
+
+    return strstring(x, " ");
+
+}
+
