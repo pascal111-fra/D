@@ -12,7 +12,7 @@ import std.string;
 
 /****************************************/
 
-string strleft(const string ch, uint n)
+string strleft(const string ch, size_t n)
 {
 
     string ch_sub;
@@ -30,7 +30,7 @@ string strreverse(const string ch)
 
     string ch_rev;
 
-    for(int i=to!int(ch.length-1); i>=0; i--)
+    foreach_reverse(i;0..ch.length)
         ch_rev~=ch[i];
 
 
@@ -41,7 +41,7 @@ string strreverse(const string ch)
 
 /*********************************************/
 
-string strright(const string ch, uint n)
+string strright(const string ch, size_t n)
 {
 
     string ch_sub1,
@@ -59,7 +59,7 @@ string strright(const string ch, uint n)
 
 /*********************************************/
 
-string strmid(const string ch, int x, int l)
+string strmid(const string ch, size_t x, size_t l)
 {
 
     string ch_sub;
@@ -77,7 +77,7 @@ string strtolower(const string ch)
 
     string ch_cpy;
 
-    for(int i=0; i<ch.length; i++)
+    for(size_t i=0; i<ch.length; i++)
         ch_cpy~=std.ascii.toLower(ch[i]);
 
     return ch_cpy;
@@ -91,7 +91,7 @@ string strtoupper(const string ch)
 
     string ch_cpy;
 
-    for(int i=0; i<ch.length; i++)
+    for(size_t i=0; i<ch.length; i++)
         ch_cpy~=std.ascii.toUpper(ch[i]);
 
     return ch_cpy;
@@ -121,11 +121,11 @@ auto d_strstr (const string ch, const string substr)
 
 /*********************************************/
 
-string strdel(const string ch, uint x, uint l )
+string strdel(const string ch, size_t x, size_t l )
 {
 
     string l_ch=ch.strleft(x);
-    string r_ch=ch.strright(to!uint(ch.length-(x+l)));
+    string r_ch=ch.strright(ch.length-(x+l));
 
     return (l_ch~=r_ch);
 
@@ -147,7 +147,7 @@ string strdel(const string ch, const string substr)
 
 /*********************************************/
 
-string strinsert(const string ch, const string substr, uint x)
+string strinsert(const string ch, const string substr, size_t x)
 {
 
     string l_ch=ch.strleft(x);
@@ -231,7 +231,7 @@ string strdelall(const string ch, const string substr)
 
 /*********************************************/
 
-string strstring(uint x, const string c)
+string strstring(size_t x, const string c)
 {
 
     string ch;
@@ -244,7 +244,7 @@ string strstring(uint x, const string c)
 
 /*********************************************/
 
-string strspace(uint x)
+string strspace(size_t x)
 {
 
     return strstring(x, " ");
