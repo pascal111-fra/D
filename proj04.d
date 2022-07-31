@@ -41,7 +41,7 @@ int main(string[] args)
                 token=token.strdel(token.length-1,1);}
 
 
-            sent_result~=token~temp~" ";}
+            sent_result~=token~strreverse(temp)~" ";}
 
     //sent_result~=".";
 
