@@ -3,7 +3,6 @@ module proj07;
 import std.stdio;
 import std.algorithm;
 import std.range;
-import core.stdc.stdlib;
 
 int main()
 {
@@ -32,7 +31,7 @@ choice_again:
     if(!only(1,2,3,4,0,-1).canFind(choice))
         goto choice_again;
     else if(choice==0)
-        exit(0);
+        return 0;
     else if(choice==-1)
         goto new_again;
 
@@ -51,5 +50,4 @@ choice_again:
 
     goto choice_again;
 
-    return 0;
 }
